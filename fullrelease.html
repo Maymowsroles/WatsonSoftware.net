@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>WatsonSoftware.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+.hero {
+  background: var(--navy);
+  padding: 5.5rem 2.5rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 900px 500px at 110% 60%, rgba(184,146,42,0.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1060px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-lt);
+  opacity: 0.8;
+  margin-bottom: 1.2rem;
+}
+.hero h1 {
+  font-family: 'Lora', serif;
+  font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.12;
+  margin-bottom: 1.2rem;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-lt);
+}
+.hero-copy {
+  font-size: 1.08rem;
+  color: rgba(255,255,255,0.58);
+  margin-bottom: 0.6rem;
+  font-weight: 300;
+  line-height: 1.75;
+  max-width: 480px;
+}
+.hero-sig {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.32);
+  letter-spacing: 0.06em;
+  margin-bottom: 2.5rem;
+}
+.hero-btns {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.hero-btn-primary {
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.7rem 1.7rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background .2s;
+}
+.hero-btn-primary:hover { background: var(--gold-lt); }
+.hero-btn-ghost {
+  background: transparent;
+  color: rgba(255,255,255,0.65);
+  font-size: 0.9rem;
+  padding: 0.68rem 1.4rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.18);
+  text-decoration: none;
+  transition: border-color .2s, color .2s;
+}
+.hero-btn-ghost:hover { border-color: var(--gold-lt); color: var(--gold-lt); }
+
+.hero-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 2rem;
+  backdrop-filter: blur(4px);
+}
+.hero-card-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-lt);
+  margin-bottom: 1.2rem;
+  opacity: 0.75;
+}
+.hero-card-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.hero-card-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  padding: 0.55rem 0.7rem;
+  border-radius: 6px;
+  transition: background .15s;
+}
+.hero-card-list li:hover { background: rgba(255,255,255,0.06); }
+.hero-card-list li a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  width: 100%;
+  transition: color .15s;
+}
+.hero-card-list li:hover a { color: #fff; }
+.hcl-icon { font-size: 1.2rem; width: 28px; text-align: center; }
+.hcl-name { font-weight: 600; font-size: 0.95rem; flex: 1; }
+.hcl-arrow { font-size: 0.75rem; color: var(--gold-lt); opacity: 0.6; }
+
+.from-dev {
+  background: var(--parch);
+  border-bottom: 1px solid var(--rule);
+  padding: 2.8rem 2.5rem;
+}
+.from-dev-inner {
+  max-width: 1060px;
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+.dev-avi {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--navy2);
+  border: 3px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+.dev-quote {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 1.03rem;
+  color: var(--navy);
+  line-height: 1.78;
+  margin-bottom: 0.5rem;
+}
+.dev-by {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.dev-by strong { color: var(--navy); }
+
+.products-wrap {
+  padding: 4rem 2.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.pw-inner { max-width: 1060px; margin: 0 auto; }
+.sec-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+.sec-title {
+  font-family: 'Lora', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.35rem;
+  line-height: 1.15;
+}
+.sec-sub {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 2.2rem;
+}
+
+.pgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(318px, 1fr));
+  gap: 1.4rem;
+}
+
+.pcard {
+  background: var(--warm);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow .2s, transform .2s;
+  overflow: hidden;
+}
+.pcard:hover {
+  box-shadow: 0 8px 28px rgba(28,43,58,0.12);
+  transform: translateY(-3px);
+}
+.pcard-stripe {
+  height: 4px;
+  background: var(--gold);
+}
+.pcard-body {
+  padding: 1.4rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.pcard-top {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  margin-bottom: 0.9rem;
+}
+.pcard-icon {
+  font-size: 1.8rem;
+  width: 46px;
+  height: 46px;
+  background: var(--parch);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.pcard-name {
+  font-family: 'Lora', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.2;
+}
+.pcard-type {
+  font-size: 0.8rem;
+  color: var(--faint);
+  margin-top: 2px;
+}
+.pcard-desc {
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 1.2rem;
+}
+.pcard-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+}
+.pcard-free {
+  font-family: 'Lora', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--green);
+}
+.pcard-dl {
+  background: var(--green);
+  color: #fff;
+  font-size: 0.83rem;
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background .15s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.pcard-dl:hover { background: #2e8a54; }
+
+.why-wrap {
+  background: var(--navy);
+  padding: 4.5rem 2.5rem;
+  border-bottom: 2px solid var(--gold);
+}
+.why-inner { max-width: 1060px; margin: 0 auto; }
+.why-wrap .sec-label { color: rgba(212,170,74,0.8); }
+.why-wrap .sec-title { color: #fff; margin-bottom: 2.5rem; }
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.why-item {
+  padding: 1.8rem 1.6rem;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.why-item:nth-child(3n) { border-right: none; }
+.why-em { font-size: 1.4rem; margin-bottom: 0.6rem; }
+.why-name {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.35rem;
+}
+.why-txt { font-size: 0.87rem; color: rgba(255,255,255,0.45); line-height: 1.65; }
+
+.reviews-wrap {
+  padding: 4rem 2.5rem;
+  background: var(--warm);
+  border-bottom: 1px solid var(--rule);
+}
+.reviews-inner { max-width: 1060px; margin: 0 auto; }
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.2rem;
+}
+.rcard {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1.6rem;
+}
+.rcard-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 0.75rem; }
+.rcard-text {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 0.97rem;
+  color: var(--navy);
+  line-height: 1.78;
+  margin-bottom: 1.1rem;
+}
+.rcard-who { font-size: 0.83rem; color: var(--muted); }
+.rcard-who strong { display: block; color: var(--navy); font-weight: 600; }
+
+.contact-wrap {
+  padding: 3.5rem 2.5rem;
+}
+.contact-inner {
+  max-width: 1060px;
+  margin: 0 auto;
+}
+.contact-box {
+  background: var(--parch);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--gold);
+  border-radius: 6px;
+  padding: 2.2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.contact-box h3 {
+  font-family: 'Lora', serif;
+  font-size: 1.3rem;
+  color: var(--navy);
+  margin-bottom: 0.3rem;
+}
+.contact-box p { font-size: 0.92rem; color: var(--muted); }
+.contact-box p a { color: var(--gold); font-weight: 600; text-decoration: none; }
+.contact-box p a:hover { text-decoration: underline; }
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-card { display: none; }
+  .why-grid { grid-template-columns: 1fr 1fr; }
+  .why-item:nth-child(3n) { border-right: 1px solid rgba(255,255,255,0.08); }
+  .why-item:nth-child(2n) { border-right: none; }
+}
+@media (max-width: 600px) {
+  .hero { padding: 3.5rem 1.5rem 3rem; }
+  .from-dev-inner { flex-direction: column; gap: 1rem; }
+  .why-grid { grid-template-columns: 1fr; }
+  .why-item { border-right: none !important; }
+  .contact-box { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Watson <span>Software</span></a>
+  <ul class="nav-links">
+    <li><a href="#products">Programs</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#products" class="nav-dl">⬇ Downloads</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">WatsonSoftware.net</p>
+      <h1>Free Windows tools<br>that<em>work.</em></h1>
+      <p class="hero-copy">I make small, focused Windows utilities and give them away for free. No accounts, no telemetry, no installers stuffed with junk — just download and run.</p>
+      <p class="hero-sig">— Made by Rylan Watson,</p>
+      <div class="hero-btns">
+        <a href="#products" class="hero-btn-primary">See All Programs</a>
+        <a href="#about" class="hero-btn-ghost">About this site</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <p class="hero-card-title">All Programs</p>
+      <ul class="hero-card-list">
+        <li><a href="swiftpack.html"><span class="hcl-icon">📦</span><span class="hcl-name">SwiftPack</span><span class="hcl-arrow">→</span></a></li>
+        <li><a href="formshift.html"><span class="hcl-icon">🔄</span><span class="hcl-name">FormShift</span><span class="hcl-arrow">→</span></a></li>
+        <li><a href="slateclean.html"><span class="hcl-icon">🧹</span><span class="hcl-name">SlateClean</span><span class="hcl-arrow">→</span></a></li>
+        <li><a href="wtconvert.html"><span class="hcl-icon">🖼</span><span class="hcl-name">wtConvert</span><span class="hcl-arrow">→</span></a></li>
+        <li><a href="copystack.html"><span class="hcl-icon">📋</span><span class="hcl-name">CopyStack</span><span class="hcl-arrow">→</span></a></li>
+        <li><a href="cursorkit.html"><span class="hcl-icon">🖱</span><span class="hcl-name">CursorKit</span><span class="hcl-arrow">→</span></a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="from-dev">
+  <div class="from-dev-inner">
+    <div class="dev-avi">👨‍💻</div>
+    <div>
+      <p class="dev-quote">"I got sick of needing to paying subscriptions for software that i cant afford, so I built my own. Everything here is stuff I actually use — and figured other people might want too. It's all free."</p>
+      <p class="dev-by">— <strong>Rylan Watson</strong>, indie developer</p>
+    </div>
+  </div>
+</div>
+
+<section class="products-wrap" id="products">
+  <div class="pw-inner">
+    <p class="sec-label">Downloads</p>
+    <h2 class="sec-title">All Programs</h2>
+    <p class="sec-sub">Windows 10 &amp; 11 · 64-bit · No installer tricks · All free</p>
+    <div class="pgrid">
+
+      <a class="pcard" href="swiftpack.html">
+        <div class="pcard-stripe"></div>
+        <div class="pcard-body">
+          <div class="pcard-top">
+            <div class="pcard-icon">📦</div>
+            <div>
+              <div class="pcard-name">SwiftPack</div>
+              <div class="pcard-type">Archiver &amp; compression</div>
+            </div>
+          </div>
+          <p class="pcard-desc">Create and extract ZIP, 7z, RAR, and TAR archives. Right-click menu integration, AES-256 encryption, drag-and-drop. Does everything WinRAR does, for free.</p>
+          <div class="pcard-foot">
+            <span class="pcard-free">Free</span>
+            <span class="pcard-dl">⬇ Download</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="pcard" href="formshift.html">
+        <div class="pcard-stripe"></div>
+        <div class="pcard-body">
+          <div class="pcard-top">
+            <div class="pcard-icon">🔄</div>
+            <div>
+              <div class="pcard-name">FormShift</div>
+              <div class="pcard-type">File format converter</div>
+            </div>
+          </div>
+          <p class="pcard-desc">Convert images, audio, and documents across 200+ formats. Drag a whole folder in and it'll batch-convert everything. No cloud, no upload, runs offline.</p>
+          <div class="pcard-foot">
+            <span class="pcard-free">Free</span>
+            <span class="pcard-dl">⬇ Download</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="pcard" href="slateclean.html">
+        <div class="pcard-stripe"></div>
+        <div class="pcard-body">
+          <div class="pcard-top">
+            <div class="pcard-icon">🧹</div>
+            <div>
+              <div class="pcard-name">SlateClean</div>
+              <div class="pcard-type">Disk &amp; registry cleaner</div>
+            </div>
+          </div>
+          <p class="pcard-desc">Clears temp files, browser caches, old logs, and broken registry entries. Shows you exactly what it found before touching anything. No scare tactics.</p>
+          <div class="pcard-foot">
+            <span class="pcard-free">Free</span>
+            <span class="pcard-dl">⬇ Download</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="pcard" href="wtconvert.html">
+        <div class="pcard-stripe"></div>
+        <div class="pcard-body">
+          <div class="pcard-top">
+            <div class="pcard-icon">🖼</div>
+            <div>
+              <div class="pcard-name">wtConvert</div>
+              <div class="pcard-type">Batch image resizer &amp; converter</div>
+            </div>
+          </div>
+          <p class="pcard-desc">Resize, crop, and convert thousands of images at once. Drop in a folder and pick your output format — JPEG, PNG, WebP, AVIF, HEIC, BMP, TIFF.</p>
+          <div class="pcard-foot">
+            <span class="pcard-free">Free</span>
+            <span class="pcard-dl">⬇ Download</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="pcard" href="copystack.html">
+        <div class="pcard-stripe"></div>
+        <div class="pcard-body">
+          <div class="pcard-top">
+            <div class="pcard-icon">📋</div>
+            <div>
+              <div class="pcard-name">CopyStack</div>
+              <div class="pcard-type">Clipboard history manager</div>
+            </div>
+          </div>
+          <p class="pcard-desc">Never lose something you copied. Stores your full clipboard history — text, images, files — and lets you search and pin items from a quick tray popup.</p>
+          <div class="pcard-foot">
+            <span class="pcard-free">Free</span>
+            <span class="pcard-dl">⬇ Download</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="pcard" href="cursorkit.html">
+        <div class="pcard-stripe"></div>
+        <div class="pcard-body">
+          <div class="pcard-top">
+            <div class="pcard-icon">🖱</div>
+            <div>
+              <div class="pcard-name">CursorKit</div>
+              <div class="pcard-type">Cursor theme manager</div>
+            </div>
+          </div>
+          <p class="pcard-desc">Switch Windows cursor themes without digging through settings. Comes with 30 built-in themes, live preview, and per-application cursor overrides.</p>
+          <div class="pcard-foot">
+            <span class="pcard-free">Free</span>
+            <span class="pcard-dl">⬇ Download</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section class="why-wrap" id="about">
+  <div class="why-inner">
+    <p class="sec-label">The deal</p>
+    <h2 class="sec-title" style="color:#fff;">Why it's all free</h2>
+    <div class="why-grid">
+      <div class="why-item fade">
+        <div class="why-em">🚫</div>
+        <div class="why-name">No subscriptions</div>
+        <p class="why-txt">Download it, keep it. No license key, no renewal email in twelve months, nothing.</p>
+      </div>
+      <div class="why-item fade">
+        <div class="why-em">📦</div>
+        <div class="why-name">Nothing bundled</div>
+        <p class="why-txt">The installer installs the program. That's all. No toolbar, no antivirus trial, no browser hijack.</p>
+      </div>
+      <div class="why-item fade">
+        <div class="why-em">🔒</div>
+        <div class="why-name">No data collected</div>
+        <p class="why-txt">None of these programs phone home. No analytics, no crash reports, no usage tracking.</p>
+      </div>
+      <div class="why-item fade">
+        <div class="why-em">⚡</div>
+        <div class="why-name">Starts fast</div>
+        <p class="why-txt">Open in under a second. Nothing running in the background when you're not using it.</p>
+      </div>
+      <div class="why-item fade">
+        <div class="why-em">📧</div>
+        <div class="why-name">Email me directly</div>
+        <p class="why-txt">No support portal. You email me, I reply — usually the same day.</p>
+      </div>
+      <div class="why-item fade">
+        <div class="why-em">🔄</div>
+        <div class="why-name">Free updates</div>
+        <p class="why-txt">New versions are always free to download. No "upgrade to Pro" to get bug fixes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-wrap" id="contact">
+  <div class="contact-inner">
+    <div class="contact-box">
+      <div>
+        <h3>Got a question or found a bug?</h3>
+        <p>Email me at <a href="mailto:support@watsonsoftware.net">support@watsonsoftware.net</a> — I reply fast.</p>
+      </div>
+      <a href="mailto:support@watsonsoftware.net" class="btn-dl" style="background:var(--gold);color:var(--navy);">✉ Send Email</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Watson <span>Software</span></div>
+    <ul class="footer-links">
+      <li><a href="#products">Programs</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="mailto:support@watsonsoftware.net">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 WatsonSoftware.net</div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
